@@ -1,0 +1,1 @@
+﻿Invoke-Command -ComputerName  -Credential Get-Credential -OutVariable output_ad -ScriptBlock { Get-ADComputer -Filter *  -Properties * | Where-Object {$_.Enabled -eq $true} | Where-Object {$_.LastLogonDate -ge (Get-Date).AddDays(-14) } } | Select-Object -Property Name,OperatingSystemVersion
